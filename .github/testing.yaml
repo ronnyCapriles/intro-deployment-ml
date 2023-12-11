@@ -1,0 +1,34 @@
+name: Testing API
+on: [push, pull_request]
+permissions:
+  id-token: write
+  contents: read
+jobs:
+  testing-api:
+    runs-on: ubuntu-lates
+    env: 
+      ACCESS_KEY_ID: $({ secretes.ACCESS_KEY_ID })
+      SECRET_ACCESS_KEY: $({ secretes.SECRET_ACCESS_KEY})
+    steps:
+      - name: Checkout the repo
+        uses: action/checkout@v3
+      - name: Set AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-session-name: aws_testing_session
+          role-to-assume: ${{ secrets.AWS_IAM_ROLE }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Creating and activating virtualenv
+        run: |
+          pip install virtualenv
+          virtualenv venv 
+          source venv/bin/activate
+      - name: Installing dependencies
+        run: |
+          pip install 'dvc[s3]'
+          pip install -r requirements_test.txt
+      -name : Test API
+        run: |
+          dvc pull model/model.pkl -r model-track
+          pytest test.py

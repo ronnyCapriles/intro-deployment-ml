@@ -6,9 +6,6 @@ permissions:
 jobs:
   testing-api:
     runs-on: ubuntu-lates
-    env: 
-      ACCESS_KEY_ID: $({ secretes.ACCESS_KEY_ID })
-      SECRET_ACCESS_KEY: $({ secretes.SECRET_ACCESS_KEY})
     steps:
       - name: Checkout the repo
         uses: action/checkout@v3

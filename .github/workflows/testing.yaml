@@ -7,7 +7,6 @@ jobs:
   testing-api:
     name: Testing-api in Github Actions
     runs-on: ubuntu-latest
-    
     steps:
       - name: Checkout the repo
         uses: action/checkout@v3
@@ -27,7 +26,7 @@ jobs:
         run: |
           pip install 'dvc[s3]'
           pip install -r requirements_test.txt
-      -name : Test API
+      - name : Test API
         run: |
           dvc pull model/model.pkl -r model-track
           pytest test.py

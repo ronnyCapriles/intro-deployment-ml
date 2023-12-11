@@ -5,6 +5,7 @@ permissions:
   contents: read
 jobs:
   testing-api:
+    name: Testing-api in Github Actions
     runs-on: ubuntu-latest
     steps:
       - name: Checkout the repo

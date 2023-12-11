@@ -30,7 +30,7 @@ jobs:
           pip install -r requirements_test.txt
       - name : Test API
         run: |
-          pip3 install pyOpenSSL
+          pip3 install --force-reinstall pyOpenSSL
           pip3 install httpx
           dvc pull model/model.pkl -r model-tracker
           pytest test.py

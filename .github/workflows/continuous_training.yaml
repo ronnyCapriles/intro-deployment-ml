@@ -62,5 +62,4 @@ jobs:
         run: |
           cat report.txt >> report.md
           cml-publish Prediction_behavior.png --md >> report.md
-          cml-send-comment report.md
-      
+          cml-send-comment report.md      

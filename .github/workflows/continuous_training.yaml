@@ -33,7 +33,7 @@ jobs:
           virtualenv venv 
           source venv/bin/activate
           pip install 'dvc[s3]'
-          pip install -r src/requirements_test.txt
+          pip install -r src/requirement.txt
           pip3 install --force-reinstall pyOpenSSL
           pip3 install httpx
           dvc pull model/model.pkl.dvc -r model-tracker
